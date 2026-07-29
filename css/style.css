@@ -267,6 +267,7 @@ h3 { font-size: 1.1rem; margin: 0 0 6px; }
   box-shadow: 0 8px 30px rgba(20, 38, 26, 0.07);
 }
 .features .card p { color: var(--ink-soft); margin: 0; font-size: 0.95rem; }
+.data-disclaimer { margin: 22px 0 0; font-size: 0.85rem; color: var(--ink-soft); text-align: center; }
 
 /* Business strip */
 .business-strip {
