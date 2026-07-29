@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wheelp — Decide antes de ir</title>
-  <meta name="description" content="Wheelp es la app que te dice si un sitio es accesible antes de ir, para personas con discapacidad física, visual o auditiva. Próximamente en el App Store.">
+  <title>Wheelp — Antes de salir, ya sabes si vas a poder entrar</title>
+  <meta name="description" content="Wheelp reúne información de accesibilidad de sitios reales para personas con discapacidad física, visual o auditiva. Próximamente en el App Store, en España.">
   <link rel="icon" href="img/favicon.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css">
@@ -14,45 +14,103 @@
     <div class="wrap">
       <img class="logo" src="img/logo.svg" alt="Wheelp">
       <nav class="site">
-        <a href="soporte.html">Soporte</a>
-        <a href="privacidad.html">Privacidad</a>
-        <a href="terminos.html">Términos</a>
+        <a class="navlink" href="soporte.html">Soporte</a>
+        <a class="navlink" href="privacidad.html">Privacidad</a>
+        <a class="pill pill-outline" href="#waitlist">Entrar en la lista</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <div class="wrap">
-      <span class="badge">Próximamente en el App Store</span>
-      <h1>Decide antes de ir. Con información real de accesibilidad.</h1>
-      <p class="lead">
-        Wheelp te muestra si un sitio es accesible antes de que te desplaces hasta allí —
-        pensada para personas con discapacidad física, visual o auditiva. Sin sorpresas al llegar.
-      </p>
+    <section class="hero">
+      <div class="dot-field"></div>
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="badge">Próximamente en el App Store · España</span>
+          <h1>Antes de salir, ya sabes si vas a poder entrar.</h1>
+          <p class="lead">
+            Wheelp reúne información de accesibilidad de sitios reales —escalones, ancho de puerta,
+            baño adaptado, bucle magnético— para que el viaje lo decidas tú, no la sorpresa al llegar.
+          </p>
 
-      <form id="waitlist-form" class="waitlist" novalidate>
-        <label for="email" class="visually-hidden">Correo electrónico</label>
-        <input id="email" name="email" type="email" placeholder="tu@email.com" required
-               autocomplete="email" aria-describedby="waitlist-note">
-        <button type="submit">Avísame</button>
-      </form>
-      <p id="waitlist-note" class="form-note" role="status" aria-live="polite"></p>
-
-      <div class="features">
-        <div class="card">
-          <h3>Accesibilidad verificada</h3>
-          <p>Datos reales de rampas, aseos adaptados, anchos de puerta y más — no solo lo que dice el mapa.</p>
+          <form id="waitlist-form" class="waitlist" novalidate>
+            <label for="email" class="visually-hidden">Correo electrónico</label>
+            <input id="email" name="email" type="email" placeholder="tu@email.com" required
+                   autocomplete="email" aria-describedby="waitlist-note">
+            <button type="submit" class="pill">Avísame</button>
+          </form>
+          <p id="waitlist-note" class="form-note" role="status" aria-live="polite"></p>
+          <p class="privacy-note">Solo usamos tu email para avisarte del lanzamiento. <a href="privacidad.html">Política de privacidad</a>.</p>
         </div>
-        <div class="card">
-          <h3>Guía por voz</h3>
-          <p>Navegación pensada para usarse sin mirar la pantalla, con avisos de obstáculos en la ruta.</p>
-        </div>
-        <div class="card">
-          <h3>Ayudantes (próximamente)</h3>
-          <p>Acompañamiento puntual de profesionales cualificados cuando lo necesites.</p>
+        <div class="hero-art">
+          <div class="phone-frame">
+            <div class="phone-island"></div>
+            <img class="phone-screen" src="img/hero-screen.jpg" alt="La app mostrando la ficha de accesibilidad del Museo del Prado: 75% accesible, con entrada sin escalones, aseo adaptado y aparcamiento disponibles.">
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="steps-section" id="como-funciona">
+      <div class="wrap">
+        <p class="kicker">Cómo funciona</p>
+        <h2>Tres pasos, sin llamar antes para preguntar</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="num">01</div>
+            <h3>Busca el sitio</h3>
+            <p>Bares, tiendas, museos, transporte. Cerca de ti o donde vayas.</p>
+          </div>
+          <div class="step">
+            <div class="num">02</div>
+            <h3>Mira los datos</h3>
+            <p>Escalones, rampa, ascensor, baño adaptado, bucle magnético. Con fotos.</p>
+          </div>
+          <div class="step">
+            <div class="num">03</div>
+            <h3>Decide</h3>
+            <p>Vas, cambias de plan o pides ayuda. Sin sorpresas al llegar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <div class="wrap">
+        <div class="features">
+          <div class="card">
+            <h3>Accesibilidad contrastada</h3>
+            <p>Datos concretos de cada sitio —escalones, rampa, baño, bucle magnético— aportados y corregidos por quien ya ha estado allí.</p>
+          </div>
+          <div class="card">
+            <h3>Guía por voz</h3>
+            <p>Indicaciones habladas y compatibilidad total con VoiceOver, para usarla sin mirar la pantalla.</p>
+          </div>
+          <div class="card">
+            <h3>Ayudantes · Próximamente</h3>
+            <p>Profesionales que te acompañan cuando el destino no es accesible por sí solo. Lo estamos construyendo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="business-strip" id="negocios">
+      <div class="inner">
+        <div>
+          <h2>¿Tienes un negocio?</h2>
+          <p>Súmate a la lista de locales interesados en aparecer en Wheelp cuando lancemos. Sin compromiso.</p>
+        </div>
+        <div>
+          <form id="business-form" class="waitlist" novalidate>
+            <label for="business-email" class="visually-hidden">Correo electrónico del negocio</label>
+            <input id="business-email" name="email" type="email" placeholder="tu@negocio.com" required
+                   autocomplete="email" aria-describedby="business-note">
+            <button type="submit" class="pill pill-filled">Avísame</button>
+          </form>
+          <p id="business-note" class="form-note" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site">
@@ -73,49 +131,55 @@
     const SUPABASE_URL = 'https://olkvvidnnurjzwlgsuic.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_FfpFgHehdrBA0OO9DR1PpQ_jC1jTE0u';
 
-    const form = document.getElementById('waitlist-form');
-    const note = document.getElementById('waitlist-note');
-    const button = form.querySelector('button');
+    function wireWaitlistForm(formId, noteId, audience) {
+      const form = document.getElementById(formId);
+      const note = document.getElementById(noteId);
+      const button = form.querySelector('button');
+      const input = form.querySelector('input[type="email"]');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      if (!email) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = input.value.trim();
+        if (!email) return;
 
-      button.disabled = true;
-      note.textContent = 'Enviando…';
-      note.className = 'form-note';
+        button.disabled = true;
+        note.textContent = 'Enviando…';
+        note.className = 'form-note';
 
-      try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/website_waitlist`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${SUPABASE_KEY}`,
-            'Prefer': 'return=minimal'
-          },
-          body: JSON.stringify({ email })
-        });
+        try {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/website_waitlist`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': SUPABASE_KEY,
+              'Authorization': `Bearer ${SUPABASE_KEY}`,
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({ email, audience })
+          });
 
-        if (res.ok) {
-          note.textContent = '¡Listo! Te avisamos en cuanto salga.';
-          note.className = 'form-note ok';
-          form.reset();
-        } else if (res.status === 409) {
-          note.textContent = 'Ese email ya está en la lista.';
-          note.className = 'form-note ok';
-          form.reset();
-        } else {
-          throw new Error('request failed');
+          if (res.ok) {
+            note.textContent = '¡Listo! Te avisamos en cuanto salga.';
+            note.className = 'form-note ok';
+            form.reset();
+          } else if (res.status === 409) {
+            note.textContent = 'Ese email ya está en la lista.';
+            note.className = 'form-note ok';
+            form.reset();
+          } else {
+            throw new Error('request failed');
+          }
+        } catch (err) {
+          note.textContent = 'Algo ha fallado. Prueba de nuevo en un momento.';
+          note.className = 'form-note err';
+        } finally {
+          button.disabled = false;
         }
-      } catch (err) {
-        note.textContent = 'Algo ha fallado. Prueba de nuevo en un momento.';
-        note.className = 'form-note err';
-      } finally {
-        button.disabled = false;
-      }
-    });
+      });
+    }
+
+    wireWaitlistForm('waitlist-form', 'waitlist-note', 'user');
+    wireWaitlistForm('business-form', 'business-note', 'business');
   </script>
 </body>
 </html>
