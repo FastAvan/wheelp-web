@@ -45,7 +45,7 @@ header.site .wrap {
   flex-wrap: wrap;
 }
 
-header.site img.logo { height: 32px; width: auto; display: block; }
+header.site img.logo { height: 44px; width: auto; display: block; }
 
 nav.site a {
   margin-left: 20px;
