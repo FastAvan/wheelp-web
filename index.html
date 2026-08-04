@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wheelp — Antes de salir, ya sabes si vas a poder entrar</title>
+  <title>Wheelp - Antes de salir, ya sabes si vas a poder entrar</title>
   <meta name="description" content="Wheelp reúne información de accesibilidad de sitios reales para personas con discapacidad física, visual o auditiva. Próximamente en el App Store, en España.">
   <link rel="icon" href="img/favicon.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -24,14 +24,13 @@
 
   <main>
     <section class="hero">
-      <div class="dot-field"></div>
       <div class="wrap-narrow">
-        <div class="hero-copy" id="waitlist">
+        <div class="hero-copy reveal" id="waitlist">
           <span class="badge">Próximamente en el App Store · España</span>
           <h1>Antes de salir, ya sabes si vas a poder entrar.</h1>
           <p class="lead">
-            Wheelp reúne información de accesibilidad de sitios reales —escalones, ancho de puerta,
-            baño adaptado, bucle magnético— para que el viaje lo decidas tú, no la sorpresa al llegar.
+            Wheelp reúne información de accesibilidad de sitios reales, escalones, ancho de puerta,
+            baño adaptado, bucle magnético, para que el viaje lo decidas tú, no la sorpresa al llegar.
           </p>
 
           <form id="waitlist-form" class="waitlist" novalidate>
@@ -48,7 +47,7 @@
 
     <section class="steps-section" id="como-funciona">
       <div class="wrap steps-layout">
-        <div class="steps-copy">
+        <div class="steps-copy reveal">
           <p class="kicker">Cómo funciona</p>
           <h2>Tres pasos, sin llamar antes para preguntar</h2>
           <div class="steps">
@@ -69,7 +68,7 @@
             </div>
           </div>
         </div>
-        <div class="steps-visual">
+        <div class="steps-visual reveal">
           <figure class="hero-panel">
             <div class="ghost-card" aria-hidden="true"></div>
             <div class="card">
@@ -109,16 +108,16 @@
 
     <section class="features-section">
       <div class="wrap">
-        <div class="features">
-          <div class="card">
+        <div class="features-grid reveal">
+          <div class="feature feature-lg">
             <h3>Accesibilidad de primera mano</h3>
-            <p>Datos concretos de cada sitio —escalones, rampa, baño, bucle magnético— de fuentes públicas y de quien ya ha estado allí. Sin verificación en campo: por eso puedes corregirlo tú.</p>
+            <p>Datos concretos de cada sitio, escalones, rampa, baño, bucle magnético, de fuentes públicas y de quien ya ha estado allí. Sin verificación en campo, por eso puedes corregirlo tú.</p>
           </div>
-          <div class="card">
+          <div class="feature">
             <h3>Guía por voz</h3>
             <p>Indicaciones habladas y compatibilidad total con VoiceOver, para usarla sin mirar la pantalla.</p>
           </div>
-          <div class="card">
+          <div class="feature">
             <h3>Ayudantes · Próximamente</h3>
             <p>Profesionales que te acompañan cuando el destino no es accesible por sí solo. Lo estamos construyendo.</p>
           </div>
@@ -127,7 +126,7 @@
       </div>
     </section>
 
-    <section class="business-strip" id="negocios">
+    <section class="business-strip reveal" id="negocios">
       <div class="inner">
         <div>
           <h2>¿Tienes un negocio?</h2>
@@ -213,6 +212,20 @@
 
     wireWaitlistForm('waitlist-form', 'waitlist-note', 'user');
     wireWaitlistForm('business-form', 'business-note', 'business');
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in-view'));
+    }
   </script>
 </body>
 </html>
