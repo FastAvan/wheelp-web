@@ -25,6 +25,33 @@ body {
   background: var(--paper);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  isolation: isolate;
+}
+
+/* Mesh background: layered brand-green glows, static, fixed behind all content */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 14% 12%, rgba(60, 181, 74, 0.16), transparent 70%),
+    radial-gradient(40% 34% at 88% 6%, rgba(60, 181, 74, 0.11), transparent 72%),
+    radial-gradient(46% 40% at 78% 94%, rgba(22, 61, 32, 0.09), transparent 70%),
+    radial-gradient(32% 28% at 6% 90%, rgba(60, 181, 74, 0.10), transparent 70%);
+}
+
+/* Fine grain texture, static, for tactile depth over the flat paper tone */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 160px 160px;
 }
 
 a { color: var(--green-dark); }
@@ -49,15 +76,16 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   padding: 0 24px;
 }
 
-/* Scroll-reveal (progressive enhancement; content is fully visible without JS) */
-.reveal {
+/* Scroll-reveal (progressive enhancement: visible by default, JS opts an element into the
+   pre-hidden state right before observing it, so content stays visible if JS never runs) */
+.reveal.pre-reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.reveal.in-view { opacity: 1; transform: none; }
+.reveal.pre-reveal.in-view { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal.pre-reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* Nav */
@@ -103,6 +131,7 @@ nav.site a.navlink:hover { color: var(--green-dark); }
   cursor: pointer;
   transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
 }
+.pill:hover { transform: translateY(-1px); }
 .pill:active { transform: scale(0.97); }
 .pill-filled { background: var(--green); color: white; }
 .pill-filled:hover { background: var(--green-dark); }
@@ -207,6 +236,14 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
   z-index: 0;
   background: radial-gradient(60% 60% at 60% 40%, rgba(60, 181, 74, 0.26), transparent 70%);
   filter: blur(40px);
+  animation: glow-pulse 5s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-panel::before { animation: none; }
 }
 .ghost-card {
   position: absolute;

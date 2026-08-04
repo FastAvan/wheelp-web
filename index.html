@@ -222,9 +222,14 @@
           }
         });
       }, { threshold: 0.15 });
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    } else {
-      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in-view'));
+      document.querySelectorAll('.reveal').forEach((el) => {
+        el.classList.add('pre-reveal');
+        observer.observe(el);
+      });
+      // Safety net: never leave content hidden if the observer fails to fire for any reason.
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in-view'));
+      }, 2500);
     }
   </script>
 </body>
