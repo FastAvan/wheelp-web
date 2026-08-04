@@ -13,6 +13,26 @@
   --r-card: 24px;
   --r-pill: 999px;
   --shadow-soft: 0 20px 60px -24px rgba(16, 29, 21, 0.22);
+  --error: #a3302a;
+}
+
+/* Dark mode: page-text tokens only. Fixed brand-gradient surfaces (business
+   strip, feature-lg tile) stay hardcoded and are intentionally untouched here,
+   since they're opaque colored surfaces with white text in both themes. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --green-dark: #6bcf80;
+    --green-tint: rgba(60, 181, 74, 0.16);
+    --green-deep: #8fe6a1;
+    --paper: #101a13;
+    --surface: #1a251d;
+    --ink: #eef4ef;
+    --ink-soft: #9fb3a4;
+    --line: #2a362c;
+    --glass: rgba(20, 30, 24, 0.72);
+    --shadow-soft: 0 20px 60px -24px rgba(0, 0, 0, 0.5);
+    --error: #ff6b60;
+  }
 }
 
 * { box-sizing: border-box; }
@@ -202,6 +222,7 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
   background: var(--surface);
   color: var(--ink);
 }
+.waitlist input[type="email"]::placeholder { color: var(--ink-soft); opacity: 0.8; }
 .waitlist button {
   padding: 14px 26px;
   border: none;
@@ -212,7 +233,7 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
   font-weight: 650;
   cursor: pointer;
 }
-.waitlist button:hover { background: var(--green-dark); }
+.waitlist button:hover { background: #268035; }
 .waitlist button:disabled { opacity: 0.6; cursor: default; }
 
 .form-note {
@@ -222,7 +243,7 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
   min-height: 1.4em;
 }
 .form-note.ok { color: var(--green-dark); font-weight: 650; }
-.form-note.err { color: #a3302a; font-weight: 650; }
+.form-note.err { color: var(--error); font-weight: 650; }
 .privacy-note { font-size: 0.82rem; color: var(--ink-soft); margin-top: 10px; }
 .privacy-note a { color: var(--ink-soft); text-decoration: underline; }
 
@@ -236,14 +257,6 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
   z-index: 0;
   background: radial-gradient(60% 60% at 60% 40%, rgba(60, 181, 74, 0.26), transparent 70%);
   filter: blur(40px);
-  animation: glow-pulse 5s ease-in-out infinite;
-}
-@keyframes glow-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.06); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-panel::before { animation: none; }
 }
 .ghost-card {
   position: absolute;
@@ -377,8 +390,20 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
   box-shadow: 0 8px 30px rgba(16, 29, 21, 0.07);
 }
 .feature p { color: var(--ink-soft); margin: 0; font-size: 0.96rem; }
+.feature-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--green-dark);
+  margin-bottom: 14px;
+}
+.feature-icon svg { width: 100%; height: 100%; }
+.feature-tint {
+  background: var(--green-tint);
+}
+.feature-tint .feature-icon { color: var(--green-dark); }
+/* Fixed brand surface: always this dark-green gradient with white text, in both themes */
 .feature-lg {
-  background: linear-gradient(155deg, var(--green-deep), var(--green-dark) 65%, var(--green));
+  background: linear-gradient(155deg, #163d20, #268035 65%, #3cb54a);
   color: white;
   display: flex;
   flex-direction: column;
@@ -389,11 +414,11 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
 .feature-lg p { color: rgba(255, 255, 255, 0.86); max-width: 34ch; }
 .data-disclaimer { margin: 26px 0 0; font-size: 0.85rem; color: var(--ink-soft); text-align: center; }
 
-/* Business strip */
+/* Business strip: fixed brand surface, same reasoning as .feature-lg above */
 .business-strip {
   margin: 0 24px 96px;
   border-radius: 28px;
-  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  background: linear-gradient(135deg, #3cb54a, #268035);
   color: white;
   padding: 52px 40px;
 }
@@ -416,8 +441,8 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
   border-radius: var(--r-pill);
   font-size: 0.95rem;
 }
-.business-strip .pill-filled { background: white; color: var(--green-dark); }
-.business-strip .pill-filled:hover { background: var(--paper); }
+.business-strip .pill-filled { background: white; color: #268035; }
+.business-strip .pill-filled:hover { background: #f3f7f1; }
 .business-strip .form-note { color: rgba(255, 255, 255, 0.88); }
 .business-strip .form-note.ok { color: white; }
 
