@@ -68,7 +68,7 @@ de seguir la cuenta. CTA de esta fase: seguir @wheelp, no lista de espera.
 ### Semana 1
 
 - Lun (reel): la promesa central en acción — buscas un sitio, ves antes de
-  salir si tiene escalones, ancho de puerta suficiente, baño adaptado, bucle
+  salir si tiene entrada sin escalones, ascensor, aseo adaptado o bucle
   magnético. Escena cotidiana con un adulto con discapacidad física, visual o
   auditiva decidiendo el plan con esa información, sin dramatismo.
 - Mié (carrusel, 5-6 láminas): qué datos muestra Wheelp de cada sitio y de
