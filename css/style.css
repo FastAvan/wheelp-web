@@ -211,10 +211,12 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  max-width: 480px;
+  /* 480px daba para email + botón; con el selector de provincia el botón caía
+     a la línea siguiente. */
+  max-width: 620px;
 }
 .waitlist input[type="email"] {
-  flex: 1 1 240px;
+  flex: 1 1 200px;
   padding: 14px 18px;
   border: 1px solid var(--line);
   border-radius: var(--r-pill);
@@ -224,14 +226,34 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
 }
 .waitlist input[type="email"]::placeholder { color: var(--ink-soft); opacity: 0.8; }
 .waitlist select.provincia {
-  flex: 1 1 150px;
-  padding: 14px 18px;
+  /* Mismo padding, tipo y borde que el input de email: la única forma de que
+     los dos campos midan exactamente lo mismo de alto es que compartan la
+     caja, no aproximarla a ojo. */
+  flex: 0 1 190px;
+  padding: 14px 44px 14px 18px;   /* hueco a la derecha para la flecha */
   border: 1px solid var(--line);
   border-radius: var(--r-pill);
   font-size: 1rem;
-  background: var(--surface);
+  font-family: inherit;
+  line-height: normal;
+  background-color: var(--surface);
   color: var(--ink);
   cursor: pointer;
+  /* Sin esto el navegador impone su propio aspecto de select y se come el
+     border-radius: es lo que hacía que la caja saliera cuadrada al lado de un
+     campo con forma de píldora. */
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%2357685c' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+}
+/* La flecha va en un SVG incrustado, así que no hereda el color: en oscuro hay
+   que cambiarla a mano o desaparece contra el fondo. */
+@media (prefers-color-scheme: dark) {
+  .waitlist select.provincia {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%239fb3a4' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
 }
 /* La opción "Provincia" es un marcador, no un valor: se distingue del texto
    real para que no parezca ya elegida. */
