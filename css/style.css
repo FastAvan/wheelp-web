@@ -473,7 +473,7 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
 /* 420px daba para email + botón; con el selector de provincia hacen tres. */
 .business-strip form { display: flex; gap: 10px; flex-wrap: wrap; max-width: 600px; }
 .business-strip input[type="email"] {
-  flex: 1 1 180px;
+  flex: 1 1 150px;
   padding: 13px 18px;
   border: none;
   border-radius: var(--r-pill);
@@ -483,7 +483,12 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
    selector necesita su propia versión: si solo hereda la del hero mide 48 px
    al lado de un email de 43 y se nota. La flecha y el fondo sí se heredan. */
 .business-strip select.provincia {
-  flex: 0 1 170px;
+  /* Un <select> no encoge por debajo de su opción más larga ("Santa Cruz de
+     Tenerife"), así que sin max-width ocupa 220 px y echa el botón a la línea
+     siguiente. Con el tope se recorta esa opción al mostrarla, que es un mal
+     mucho menor que un formulario descuadrado. */
+  flex: 0 1 190px;
+  max-width: 190px;
   padding: 13px 44px 13px 18px;
   border: none;
   font-size: 0.95rem;
