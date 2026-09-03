@@ -470,12 +470,22 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
 }
 .business-strip h2 { color: white; margin-bottom: 6px; }
 .business-strip p { color: rgba(255, 255, 255, 0.9); margin: 0; max-width: 46ch; }
-.business-strip form { display: flex; gap: 10px; flex-wrap: wrap; max-width: 420px; }
+/* 420px daba para email + botón; con el selector de provincia hacen tres. */
+.business-strip form { display: flex; gap: 10px; flex-wrap: wrap; max-width: 600px; }
 .business-strip input[type="email"] {
-  flex: 1 1 200px;
+  flex: 1 1 180px;
   padding: 13px 18px;
   border: none;
   border-radius: var(--r-pill);
+  font-size: 0.95rem;
+}
+/* Esta franja achica sus campos respecto al formulario del hero, así que el
+   selector necesita su propia versión: si solo hereda la del hero mide 48 px
+   al lado de un email de 43 y se nota. La flecha y el fondo sí se heredan. */
+.business-strip select.provincia {
+  flex: 0 1 170px;
+  padding: 13px 44px 13px 18px;
+  border: none;
   font-size: 0.95rem;
 }
 .business-strip .pill-filled { background: white; color: #268035; }
