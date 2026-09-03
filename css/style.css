@@ -496,6 +496,9 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
 .business-strip .pill-filled { background: white; color: #268035; }
 .business-strip .pill-filled:hover { background: #f3f7f1; }
 .business-strip .form-note { color: rgba(255, 255, 255, 0.88); }
+/* El aviso de privacidad usa --ink-soft, que sobre la franja verde no se lee. */
+.business-strip .privacy-note { color: rgba(255, 255, 255, 0.82); }
+.business-strip .privacy-note a { color: rgba(255, 255, 255, 0.92); }
 .business-strip .form-note.ok { color: white; }
 
 /* Footer */
