@@ -223,6 +223,20 @@ h3 { font-size: 1.12rem; font-weight: 700; margin: 0 0 6px; }
   color: var(--ink);
 }
 .waitlist input[type="email"]::placeholder { color: var(--ink-soft); opacity: 0.8; }
+.waitlist select.provincia {
+  flex: 1 1 150px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-size: 1rem;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+/* La opción "Provincia" es un marcador, no un valor: se distingue del texto
+   real para que no parezca ya elegida. */
+.waitlist select.provincia:invalid { color: var(--ink-soft); }
+
 .waitlist button {
   padding: 14px 26px;
   border: none;

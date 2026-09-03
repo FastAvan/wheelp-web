@@ -17,6 +17,7 @@
         <a class="navlink" href="soporte.html">Soporte</a>
         <a class="navlink" href="privacidad.html">Privacidad</a>
         <a class="navlink" href="terminos.html">Términos</a>
+        <a class="pill pill-outline" href="#ayudantes">Ser ayudante</a>
         <a class="pill pill-outline" href="#waitlist">Entrar en la lista</a>
       </nav>
     </div>
@@ -37,6 +38,9 @@
             <label for="email" class="visually-hidden">Correo electrónico</label>
             <input id="email" name="email" type="email" placeholder="tu@email.com" required
                    autocomplete="email" aria-describedby="waitlist-note">
+            <label for="provincia" class="visually-hidden">Provincia</label>
+            <select id="provincia" name="province" class="provincia" required
+                    aria-describedby="waitlist-note"></select>
             <button type="submit" class="pill">Avísame</button>
           </form>
           <p id="waitlist-note" class="form-note" role="status" aria-live="polite"></p>
@@ -128,6 +132,31 @@
       </div>
     </section>
 
+    <section class="business-strip reveal" id="ayudantes">
+      <div class="inner">
+        <div>
+          <h2>¿Quieres ser ayudante?</h2>
+          <p>
+            Acompañar a alguien en un trayecto que sin ti no haría. Tú decides
+            cuándo estás disponible y por cuánto tiempo, y puedes desactivarlo en
+            cualquier momento. Te avisamos cuando abramos en tu provincia.
+          </p>
+        </div>
+        <div>
+          <form id="helper-form" class="waitlist" novalidate>
+            <label for="helper-email" class="visually-hidden">Tu correo electrónico</label>
+            <input id="helper-email" name="email" type="email" placeholder="tu@email.com" required
+                   autocomplete="email" aria-describedby="helper-note">
+            <label for="helper-provincia" class="visually-hidden">Tu provincia</label>
+            <select id="helper-provincia" name="province" class="provincia" required
+                    aria-describedby="helper-note"></select>
+            <button type="submit" class="pill pill-filled">Quiero ayudar</button>
+          </form>
+          <p id="helper-note" class="form-note" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
     <section class="business-strip reveal" id="negocios">
       <div class="inner">
         <div>
@@ -139,6 +168,9 @@
             <label for="business-email" class="visually-hidden">Correo electrónico del negocio</label>
             <input id="business-email" name="email" type="email" placeholder="tu@negocio.com" required
                    autocomplete="email" aria-describedby="business-note">
+            <label for="business-provincia" class="visually-hidden">Provincia del negocio</label>
+            <select id="business-provincia" name="province" class="provincia" required
+                    aria-describedby="business-note"></select>
             <button type="submit" class="pill pill-filled">Avísame</button>
           </form>
           <p id="business-note" class="form-note" role="status" aria-live="polite"></p>
@@ -165,6 +197,27 @@
     const SUPABASE_URL = 'https://olkvvidnnurjzwlgsuic.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_FfpFgHehdrBA0OO9DR1PpQ_jC1jTE0u';
 
+    // Las 52 provincias, en una sola lista. Se rellenan por JS porque el
+    // formulario ya depende de JS para enviarse: duplicar 52 opciones en tres
+    // sitios del HTML es la vía rápida a que se desincronicen.
+    const PROVINCIAS = [
+      'A Coruña','Álava','Albacete','Alicante','Almería','Asturias','Ávila','Badajoz',
+      'Baleares','Barcelona','Burgos','Cáceres','Cádiz','Cantabria','Castellón','Ceuta',
+      'Ciudad Real','Córdoba','Cuenca','Girona','Granada','Guadalajara','Guipúzcoa','Huelva',
+      'Huesca','Jaén','La Rioja','Las Palmas','León','Lleida','Lugo','Madrid','Málaga',
+      'Melilla','Murcia','Navarra','Ourense','Palencia','Pontevedra','Salamanca',
+      'Santa Cruz de Tenerife','Segovia','Sevilla','Soria','Tarragona','Teruel','Toledo',
+      'Valencia','Valladolid','Vizcaya','Zamora','Zaragoza'
+    ];
+
+    document.querySelectorAll('select.provincia').forEach((select) => {
+      const vacia = new Option('Provincia', '');
+      vacia.disabled = true;
+      vacia.selected = true;
+      select.add(vacia);
+      PROVINCIAS.forEach((nombre) => select.add(new Option(nombre, nombre)));
+    });
+
     function wireWaitlistForm(formId, noteId, audience) {
       const form = document.getElementById(formId);
       const note = document.getElementById(noteId);
@@ -174,7 +227,13 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = input.value.trim();
+        const province = form.querySelector('select.provincia')?.value || null;
         if (!email) return;
+        if (!province) {
+          note.textContent = 'Elige tu provincia: solo abrimos donde haya ayudantes cerca.';
+          note.className = 'form-note err';
+          return;
+        }
 
         button.disabled = true;
         note.textContent = 'Enviando…';
@@ -189,7 +248,7 @@
               'Authorization': `Bearer ${SUPABASE_KEY}`,
               'Prefer': 'return=minimal'
             },
-            body: JSON.stringify({ email, audience })
+            body: JSON.stringify({ email, audience, province })
           });
 
           if (res.ok) {
@@ -213,6 +272,7 @@
     }
 
     wireWaitlistForm('waitlist-form', 'waitlist-note', 'user');
+    wireWaitlistForm('helper-form', 'helper-note', 'helper');
     wireWaitlistForm('business-form', 'business-note', 'business');
 
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
