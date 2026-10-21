@@ -539,3 +539,14 @@ footer.site a:hover { color: var(--green-dark); }
 .error-page .pill { margin-bottom: 20px; }
 .error-page .privacy-note { color: var(--ink-soft); }
 main.legal-main { padding: 58px 0 40px; }
+
+.consent {
+  position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50;
+  max-width: 640px; margin: 0 auto; padding: 16px 20px;
+  display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card);
+  box-shadow: 0 8px 30px rgba(16, 29, 21, 0.14);
+}
+.consent p { margin: 0; flex: 1 1 260px; font-size: 0.95rem; color: var(--ink); }
+.consent div { display: flex; gap: 8px; }
+.consent button { cursor: pointer; font: inherit; }
